@@ -1,0 +1,41 @@
+version: '3'
+
+
+services:
+  php:
+    build: docker/php
+    volumes:
+      - .:/var/www/app
+    environment:
+      DEBUG: 1
+      MYSQL_HOST: mysql
+      MYSQL_PORT: $MYSQL_PORT
+      MYSQL_USER: $MYSQL_USER
+      MYSQL_PASSWORD: $MYSQL_PASSWORD
+      MYSQL_DATABASE: $MYSQL_DATABASE
+    user: "${USER_ID}:${GROUP_ID}"
+
+  nginx:
+    build: docker/nginx
+    volumes:
+      - .:/var/www/app
+    ports:
+      - $PORT:80
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE
+      - MYSQL_USER
+      - MYSQL_PASSWORD
+      - MYSQL_ROOT_PASSWORD
+    ports:
+      - $MYSQL_PORT:3306
+    expose:
+      - 3306
+    volumes:
+      - mysql:/var/lib/mysql
+
+
+volumes:
+  mysql:

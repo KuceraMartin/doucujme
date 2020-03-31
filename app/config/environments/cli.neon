@@ -1,0 +1,9 @@
+extensions:
+	kdyby.console: Kdyby\Console\DI\ConsoleExtension
+	nextras.migrations: Nextras\Migrations\Bridges\NetteDI\MigrationsExtension
+
+nextras.migrations:
+	dir: %appDir%/../migrations
+	dbal: nextras
+	driver: mysql
+	withDummyData: %debugMode%

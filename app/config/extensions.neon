@@ -1,0 +1,19 @@
+extensions:
+	nextras.dbal: Nextras\Dbal\Bridges\NetteDI\DbalExtension
+	nextras.orm: Nextras\Orm\Bridges\NetteDI\OrmExtension
+
+application:
+	scanComposer: false #fails on kdyby/console
+	mapping:
+		*: App\Modules\*\*Presenter
+
+nextras.dbal:
+	driver: %dbal.driver%
+	host: %dbal.host%
+	port: %dbal.port%
+	username: %dbal.username%
+	password: %dbal.password%
+	database: %dbal.database%
+
+nextras.orm:
+	model: App\Model\RepositoryContainer

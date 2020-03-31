@@ -1,0 +1,2 @@
+services:
+	router: Nette\Application\Routers\SimpleRouter('Front:Homepage:')
